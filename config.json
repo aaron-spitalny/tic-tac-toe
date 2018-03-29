@@ -1,6 +1,4 @@
 {
-    "email": "some-email",
-    "password": "some-password",
-    "secret": "shhh",
-    "database": "mongodb://aaron1:123456@ds263408.mlab.com:63408/ttt"
+    "email": "cse305project%40gmail.com",
+    "password": "cse3052017"
 }

@@ -17,7 +17,9 @@ router.use(bodyParser.urlencoded({
 
 router.get('/createAccount', function(request, response) {
     response.render('index-tmpl', {
-        pageID: 'createAccount'
+        pageID: 'createAccount',
+        title: "Tic-Tac-Toe"
+
     });
 });
 
@@ -136,10 +138,9 @@ async function verifyInput(body, response) {
     if(flag == true){
         if(body.password !== body.confirmPassword){
             flag = false;
-            this.setState({
-                error: "confirmPassword",
-                errorMessage: "These passwords don't match."
-            });
+            response.status = "ERROR";
+            response.error = "confirmPassword";
+            response.errorMessage = "These passwords don't match.";
         }
     }
     if (flag == true) {

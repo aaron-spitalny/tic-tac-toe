@@ -21,25 +21,29 @@ router.get(['/ttt', '/'], async function(req, res) {
     try {
         if (req.cookies == undefined || Object.keys(req.cookies).length === 0) {
             res.render('index-tmpl', {
-                pageID: 'signIn'
+                pageID: 'signIn',
+                title: "Tic-Tac-Toe"
             });
         } else {
             var userJWTPayload = jwt.verify(req.cookies.token, configFile.secret)
             let login = await userService.logInUserByID(userJWTPayload.id);
             if (!login) {
                    res.render('index-tmpl', {
-                        pageID: 'signIn'
+                        pageID: 'signIn',
+                        title: "Tic-Tac-Toe"
                     });
             } else {
                 if (login.active == false) {
                        res.render('index-tmpl', {
-                            pageID: 'signIn'
+                            pageID: 'signIn',
+                            title: "Tic-Tac-Toe"
                         });
                 } else {
                     res.render('play-tmpl', {
                         pageID: 'play',
                         name: userJWTPayload.username,
                         date: new Date(),
+                        title: "Tic-Tac-Toe"
                     });
                 }
             }
@@ -47,7 +51,8 @@ router.get(['/ttt', '/'], async function(req, res) {
     } catch (err) {
         console.log(err)
         res.render('index-tmpl', {
-             pageID: 'signIn'
+             pageID: 'signIn',
+             title: "Tic-Tac-Toe"
          });
     }
 });

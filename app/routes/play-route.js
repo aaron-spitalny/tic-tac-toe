@@ -12,7 +12,7 @@ router.use(bodyParser.urlencoded({extended: false}));
 
 router.get('/logout', async function(req, res) {
     res.clearCookie('token');
-    res.redirect("/ttt");
+    res.redirect("/");
 });
 
 router.post('/logout', async function(req, res) {
@@ -165,12 +165,12 @@ router.post('/ttt/play', async function(req, res) {
     var configFile = req.app.get('appConfig');
     try {
         if (req.cookies == undefined) {
-            res.send({"status": "ERROR"});
+            res.redirect("/ttt");
         } else {
             var userJWTPayload = jwt.verify(req.cookies.token, configFile.secret);
             let user = await userService.logInUserByID(userJWTPayload.id);
             if (!user) {
-                res.send({"status": "ERROR"});
+                res.redirect("/ttt");
             } else {
                 if (user.active == false) {
                     res.send({"status": "ERROR"});
@@ -254,7 +254,7 @@ router.post('/ttt/play', async function(req, res) {
         }
     } catch (err) {
         console.log(err)
-        res.send({"status": "ERROR"});
+        res.redirect("/ttt");
     }
 });
 
