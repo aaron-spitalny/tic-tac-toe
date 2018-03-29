@@ -34,4 +34,3 @@
     "webpack": "^3.11.0"
   }
 }
-reload(app);
