@@ -84,7 +84,7 @@ router.post('/login', async function(req, res) {
                     }));
                 } else {
                     var jwtPayload = {
-                        usename: req.body.username,
+                        username: req.body.username,
                         id: login._id
                     }
                     var authJwtToken = jwt.sign(jwtPayload, configFile.secret)
